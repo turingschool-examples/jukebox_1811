@@ -8,11 +8,16 @@ RSpec.describe 'when visitor visits songs index', type: :feature do
     visit '/songs'
 
     expect(page).to have_content("All Songs")
-    expect(page).to have_content(song_1.title)
-    expect(page).to have_content(song_2.title)
-    expect(page).to have_content(song_1.length)
-    expect(page).to have_content(song_2.length)
-    expect(page).to have_content(song_1.play_count)
-    expect(page).to have_content(song_2.play_count)
+
+    within "#song-#{song_1.id}" do
+      expect(page).to have_content(song_1.title)
+      expect(page).to have_content("Length: #{song_1.length}")
+      expect(page).to have_content("Play count: #{song_1.play_count}")
+    end
+    within "#song-#{song_2.id}" do
+      expect(page).to have_content(song_2.title)
+      expect(page).to have_content("Length: #{song_2.length}")
+      expect(page).to have_content("Play count: #{song_2.play_count}")
+    end
   end
 end

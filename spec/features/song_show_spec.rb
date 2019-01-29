@@ -7,12 +7,13 @@ RSpec.describe 'when visitor visits songs show', type: :feature do
 
     visit "/songs/#{song_1.id}"
 
-    within("#song-#{song_1.id}") do
+    within "#song-#{song_1.id}" do
       expect(page).to have_content(song_1.title)
       expect(page).to have_content("length: #{song_1.length}")
       expect(page).to have_content("play count: #{song_1.play_count}")
     end
-      expect(page).to have_no_content(song_2.title)
-      expect(page).to_not have_content("length: #{song_2.length}")
+    expect(page).to_not have_css("#song-#{song_2.id}")
+    expect(page).to have_no_content(song_2.title)
+    expect(page).to_not have_content("length: #{song_2.length}")
   end
 end
