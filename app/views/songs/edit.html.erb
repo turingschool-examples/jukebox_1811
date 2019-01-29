@@ -1,5 +1,15 @@
+<% if @song.errors %>
+<ul id="errors">
+  <% @song.errors.full_messages.each do |message| %>
+  <li><%= message %></li>
+  <% end %>
+</ul>
+<% end %>
+
 <form action="/songs/<%= @song.id %>" method="post">
   <input type="hidden" name="_method" value="put">
   <input type="text" name="song[title]" value="<%= @song.title %>"/>
+  <input type="text" name="song[length]" value="<%= @song.length %>"/>
+  <input type="text" name="song[play_count]" value="<%= @song.play_count %>"/>
   <input type="submit" value="Save">
 </form>

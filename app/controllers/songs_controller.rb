@@ -13,8 +13,15 @@ class SongsController < ApplicationController
 
   def update
     @song = Song.find(params[:id])
-    @song.update(title: params[:song][:title])
-    @song.save
-    redirect_to "/songs/#{@song.id}"
+
+    @song.title = params[:song][:title]
+    @song.length = params[:song][:length]
+    @song.play_count = params[:song][:play_count]
+
+    if @song.save
+      redirect_to "/songs/#{@song.id}"
+    else
+      render :edit
+    end
   end
 end

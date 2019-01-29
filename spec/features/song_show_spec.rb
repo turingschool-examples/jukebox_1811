@@ -2,8 +2,9 @@ require 'rails_helper'
 
 RSpec.describe 'when visitor visits songs show', type: :feature do
   it 'can see a single song' do
-    song_1 = Song.create(title: "Don't Stop Believin'", length: 345, play_count: 13)
-    song_2 = Song.create(title: "This Must be the Place", length: 13, play_count: 11)
+    journey = Artist.create(name: 'Journey')
+    song_1 = journey.songs.create(title: "Don't Stop Believin'", length: 345, play_count: 13)
+    song_2 = journey.songs.create(title: "This Must be the Place", length: 13, play_count: 11)
 
     visit "/songs/#{song_1.id}"
 
