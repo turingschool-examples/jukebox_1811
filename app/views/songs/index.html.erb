@@ -2,7 +2,7 @@
 
 <% @songs.each do |song| %>
   <section id="song-<%= song.id %>">
-    <h3><%= song.title %></h3>
+    <h3><%=  link_to song.title, song_path(song), class: 'here' %></h3>
     <p>Play count: <%= song.play_count %></p>
     <p>Length: <%= song.length %></p>
   </section>

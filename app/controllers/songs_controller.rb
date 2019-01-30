@@ -19,7 +19,7 @@ class SongsController < ApplicationController
     @song.play_count = params[:song][:play_count]
 
     if @song.save
-      redirect_to "/songs/#{@song.id}"
+      redirect_to song_path(@song)
     else
       render :edit
     end

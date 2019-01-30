@@ -7,7 +7,7 @@ RSpec.describe 'when visitor visits songs index', type: :feature do
     @song_2 = @journey.songs.create(title: "This Must Be the Place", length: 678, play_count: 5)
   end
   it 'can see all songs' do
-    visit '/songs'
+    visit songs_path
 
     expect(page).to have_content("All Songs")
 
