@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  # get '/songs', to: 'songs#index'
-  # get '/songs/:id', to: 'songs#show'
-  # get '/songs/:id/edit', to: 'songs#edit'
-  # put '/songs/:id', to: 'songs#update'
 
-  root 'songs#index'
+  # root 'songs#index'
 
-  resources :songs, only: [:index, :show, :edit, :update]
-  resources :artists
+  # resources :songs, only: [:index, :show, :edit, :update]
+  # resources :artists
   # resources :playlists
+
+  resources :artists do
+    resources :songs, only: [:new, :create]
+  end
+
+  resources :songs, only: [:index, :show, :update, :edit]
 end
