@@ -1,20 +1,3 @@
-<% if @song.errors %>
-<ul id="errors">
-  <% @song.errors.full_messages.each do |message| %>
-  <li><%= message %></li>
-  <% end %>
-</ul>
-<% end %>
+<h2>Edit Song</h2>
 
-<%= form_for @song do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-
-  <%= f.label :length %>
-  <%= f.number_field :length %>
-
-  <%= f.label :play_count %>
-  <%= f.number_field :play_count %>
-
-  <%= f.submit %>
-<% end %>
+<%= render partial: 'form' %>
