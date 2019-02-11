@@ -12,4 +12,8 @@ Rails.application.routes.draw do
   end
 
   resources :songs, only: [:index, :show]
+
+  namespace :admin do
+    resources :categories, only: [:index]
+  end
 end
