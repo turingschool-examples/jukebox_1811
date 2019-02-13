@@ -16,6 +16,9 @@
       <%= link_to 'Log In', login_path %>
     <% end %>
 
+    <p>Cart: <%= @cart.total_count %></p>
+    <%= button_to "Create Order", orders_path %>
+
     <%= yield %>
   </body>
 </html>

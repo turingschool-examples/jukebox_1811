@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190211201335) do
+ActiveRecord::Schema.define(version: 20190213175252) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,21 @@ ActiveRecord::Schema.define(version: 20190211201335) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "order_songs", force: :cascade do |t|
+    t.bigint "song_id"
+    t.bigint "order_id"
+    t.integer "quantity"
+    t.index ["order_id"], name: "index_order_songs_on_order_id"
+    t.index ["song_id"], name: "index_order_songs_on_song_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "playlist_songs", force: :cascade do |t|
@@ -50,6 +65,9 @@ ActiveRecord::Schema.define(version: 20190211201335) do
     t.integer "role", default: 0
   end
 
+  add_foreign_key "order_songs", "orders"
+  add_foreign_key "order_songs", "songs"
+  add_foreign_key "orders", "users"
   add_foreign_key "playlist_songs", "playlists"
   add_foreign_key "playlist_songs", "songs"
   add_foreign_key "songs", "artists"

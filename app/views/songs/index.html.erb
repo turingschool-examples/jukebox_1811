@@ -1,3 +1,7 @@
+<%= flash.each do |type, message| %>
+  <%= content_tag :div, message, class: type %>
+<% end %>
+
 <h1>All Songs</h1>
 
 <% @songs.each do |song| %>
@@ -5,5 +9,6 @@
     <h3><%=  link_to song.title, song_path(song), class: 'here' %></h3>
     <p>Play count: <%= song.play_count %></p>
     <p>Length: <%= song.length %></p>
+    <%= button_to "Add Song", carts_path(song_id: song.id) %>
   </section>
 <% end %>
