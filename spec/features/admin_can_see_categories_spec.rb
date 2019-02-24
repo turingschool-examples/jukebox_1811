@@ -6,6 +6,7 @@ RSpec.describe 'categories workflow' do
       user = User.create!(username: 'papa smurf', password: 'password', role: 1)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
+
       visit admin_categories_path
 
       expect(page).to have_content('Admin Categories')
